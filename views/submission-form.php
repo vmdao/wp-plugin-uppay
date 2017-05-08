@@ -39,9 +39,7 @@ else :
 	<?php if ($usp_options['usp_form_content'] !== '') echo $usp_options['usp_form_content']; ?>
 	
 	<form id="usp_form" method="post" enctype="multipart/form-data" data-parsley-validate action="">
-		<fieldset> 
-			<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">
-		</fieldset>		
+			
 		<div id="usp-error-message" class="usp-callout-failure usp-hidden"><?php esc_html_e('Please complete the required fields.', 'usp'); ?></div>
 		<?php echo usp_error_message();
 		
@@ -205,11 +203,13 @@ else :
 	jQuery('form#usp_form').submit(function(e){
 
         e.preventDefault();
-		//var data = getDataForm();
+	
+		var data = new FormData(this);
+		formdata.append('action', 'custom_upload');
 		jQuery.ajax({
 			type: 'POST',
 			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-			data : new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+			data :  data,// Data sent to server, a set of key/value pairs (i.e. form fields and values)
 			contentType: false,       // The content type used when sending data to the server.
 			cache: false,             // To unable request pages to be cached
 			processData:false,  
