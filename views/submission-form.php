@@ -200,7 +200,7 @@ else :
 		data.action = 'custom_upload';
 		jQuery.ajax({
 			type: 'POST',
-			url: '<?php echo admin_url( "admin-AJAX.php" ); ?>',
+			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
 			data : data,
 			success : function (resp){
 				try {
