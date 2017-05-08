@@ -39,7 +39,9 @@ else :
 	<?php if ($usp_options['usp_form_content'] !== '') echo $usp_options['usp_form_content']; ?>
 	
 	<form id="usp_form" method="post" enctype="multipart/form-data" data-parsley-validate action="">
-		<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">		
+		<fieldset> 
+			<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">
+		</fieldset>		
 		<div id="usp-error-message" class="usp-callout-failure usp-hidden"><?php esc_html_e('Please complete the required fields.', 'usp'); ?></div>
 		<?php echo usp_error_message();
 		
@@ -232,15 +234,6 @@ else :
 			
 		})
     });
-
-	function getDataForm(){
-		var $inputs = jQuery('form#usp_form :input');
-		var values = {};
-    	$inputs.each(function() {
-        	values[this.name] = jQuery(this).val();
-    	});
-		return values;
-	}
 })();</script>
 
 <?php endif; ?>
