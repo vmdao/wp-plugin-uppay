@@ -39,6 +39,7 @@ else :
 	<?php if ($usp_options['usp_form_content'] !== '') echo $usp_options['usp_form_content']; ?>
 	
 	<form id="usp_form" method="post" enctype="multipart/form-data" data-parsley-validate action="">
+		<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">		
 		<div id="usp-error-message" class="usp-callout-failure usp-hidden"><?php esc_html_e('Please complete the required fields.', 'usp'); ?></div>
 		<?php echo usp_error_message();
 		
@@ -166,8 +167,6 @@ else :
 		<fieldset id="coldform_verify" style="display:none;">
 			<label for="user-submitted-verify"><?php esc_html_e('Human verification: leave this field empty.', 'usp'); ?></label>
 			<input id="user-submitted-verify" name="user-submitted-verify" type="text" class="exclude" value="">
-			<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">			
-			
 		</fieldset>
 		
 		<div id="usp-submit">
