@@ -43,7 +43,8 @@ div#user-submitted-posts ul.parsley-errors-list.filled li.parsley-required { dis
 	@ https://perishablepress.com/user-submitted-posts/
 	Complete list of CSS selectors @ http://m0n.co/e
 */
-
+div#user-submitted-posts a#usp_add-another { display:none; }
+div#user-submitted-posts fieldset input.usp-input.usp-clone { margin: 0; display: inline; font-size: 90%; }
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    rgba(0,0,0,0.4) !important;
 }
@@ -124,6 +125,7 @@ div#user-submitted-posts fieldset input#user-submitted-email:hover{
 
 div#user-submitted-posts div#usp-submit { 
 		text-align: center;
+		margin: 0;
 }
 div#user-submitted-posts div#usp-submit #user-submitted-post{
 		color: #fff;
@@ -180,7 +182,7 @@ a[id="upload-drawing-cta"]:target ~ .inner div#upload-drawing{
 
 .custom-file-input {
 	max-width: 155px;
-  color: transparent !important;
+  	color: transparent !important;
 }
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
