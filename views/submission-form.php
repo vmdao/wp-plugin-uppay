@@ -206,6 +206,7 @@ else :
 	
 		var formData = new FormData(this);
 		formData.append('action', 'custom_upload');
+		formData.append('user-submitted-post', 'Send');
 		jQuery.ajax({
 			type: 'POST',
 			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
