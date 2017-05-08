@@ -204,12 +204,12 @@ else :
 
         e.preventDefault();
 	
-		var data = new FormData(this);
-		formdata.append('action', 'custom_upload');
+		var formData = new FormData(this);
+		formData.append('action', 'custom_upload');
 		jQuery.ajax({
 			type: 'POST',
 			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-			data :  data,// Data sent to server, a set of key/value pairs (i.e. form fields and values)
+			data :  formData,// Data sent to server, a set of key/value pairs (i.e. form fields and values)
 			contentType: false,       // The content type used when sending data to the server.
 			cache: false,             // To unable request pages to be cached
 			processData:false,  
