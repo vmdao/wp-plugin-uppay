@@ -58,11 +58,40 @@ else :
 			<label for="user-submitted-url"><?php esc_html_e('Your URL', 'usp'); ?></label>
 			<input id="user-submitted-url" name="user-submitted-url" type="text" value="" placeholder="<?php esc_attr_e('Your URL', 'usp'); ?>"<?php if (usp_check_required('usp_url')) echo $usp_required; ?> class="usp-input">
 		</fieldset>
+
+		<?php } if ($usp_options['usp_content'] == 'show' || $usp_options['usp_content'] == 'optn') { ?>
+		<fieldset class="usp-content">
+			<?php if ($usp_options['usp_richtext_editor'] == true) { ?>
+			
+			<div class="usp_text-editor">
+			<?php $usp_rte_settings = array(
+				    'wpautop'          => true,  // enable rich text editor
+				    'media_buttons'    => true,  // enable add media button
+				    'textarea_name'    => 'user-submitted-content', // name
+				    'textarea_rows'    => '10',  // number of textarea rows
+				    'tabindex'         => '',    // tabindex
+				    'editor_css'       => '',    // extra CSS
+				    'editor_class'     => 'usp-rich-textarea', // class
+				    'teeny'            => false, // output minimal editor config
+				    'dfw'              => false, // replace fullscreen with DFW
+				    'tinymce'          => true,  // enable TinyMCE
+				    'quicktags'        => true,  // enable quicktags
+				    'drag_drop_upload' => true,  // enable drag-drop
+				);
+				wp_editor('', 'uspcontent', apply_filters('usp_editor_settings', $usp_rte_settings)); ?>
+				
+			</div>
+			<?php } else { ?>
+				
+			<!--<label for="user-submitted-content"><?php esc_html_e('Post Content', 'usp'); ?></label>-->
+			<textarea id="user-submitted-content" name="user-submitted-content" rows="5" placeholder="<?php esc_attr_e('I want a modern logo with red and green .... (optional)', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $usp_required; ?> class="usp-textarea"></textarea>
+			<?php } ?>			
+		</fieldset>
+
 		<?php } if ($usp_options['usp_email'] == 'show' || $usp_options['usp_email'] == 'optn') { ?>
-		
 		<fieldset class="usp-email">
-			<label for="user-submitted-email"><?php esc_html_e('Your Email', 'usp'); ?></label>
-			<input id="user-submitted-email" name="user-submitted-email" type="text" value="" placeholder="<?php esc_attr_e('Your Email', 'usp'); ?>"<?php if (usp_check_required('usp_email')) echo $usp_required; ?> class="usp-input">
+			<!--<label for="user-submitted-email"><?php esc_html_e('Your Email', 'usp'); ?></label>-->
+			<input id="user-submitted-email" name="user-submitted-email" type="text" value="" placeholder="<?php esc_attr_e('My email is ....', 'usp'); ?>"<?php if (usp_check_required('usp_email')) echo $usp_required; ?> class="usp-input">
 		</fieldset>
 		<?php } if ($usp_options['usp_title'] == 'show' || $usp_options['usp_title'] == 'optn') { ?>
 		
@@ -95,41 +124,14 @@ else :
 				
 			</select>
 		</fieldset>
-		<?php } if ($usp_options['usp_content'] == 'show' || $usp_options['usp_content'] == 'optn') { ?>
 		
-		<fieldset class="usp-content">
-			<?php if ($usp_options['usp_richtext_editor'] == true) { ?>
-			
-			<div class="usp_text-editor">
-			<?php $usp_rte_settings = array(
-				    'wpautop'          => true,  // enable rich text editor
-				    'media_buttons'    => true,  // enable add media button
-				    'textarea_name'    => 'user-submitted-content', // name
-				    'textarea_rows'    => '10',  // number of textarea rows
-				    'tabindex'         => '',    // tabindex
-				    'editor_css'       => '',    // extra CSS
-				    'editor_class'     => 'usp-rich-textarea', // class
-				    'teeny'            => false, // output minimal editor config
-				    'dfw'              => false, // replace fullscreen with DFW
-				    'tinymce'          => true,  // enable TinyMCE
-				    'quicktags'        => true,  // enable quicktags
-				    'drag_drop_upload' => true,  // enable drag-drop
-				);
-				wp_editor('', 'uspcontent', apply_filters('usp_editor_settings', $usp_rte_settings)); ?>
-				
-			</div>
-			<?php } else { ?>
-				
-			<label for="user-submitted-content"><?php esc_html_e('Post Content', 'usp'); ?></label>
-			<textarea id="user-submitted-content" name="user-submitted-content" rows="5" placeholder="<?php esc_attr_e('Post Content', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $usp_required; ?> class="usp-textarea"></textarea>
-			<?php } ?>
-			
-		</fieldset>
+		
+		
 		<?php } if ($usp_options['usp_images'] == 'show') { ?>
 		<?php if ($usp_options['max-images'] !== 0) { ?>
 		
 		<fieldset class="usp-images">
-			<label for="user-submitted-image"><?php esc_html_e('Upload an Image', 'usp'); ?></label>
+			<!--<label for="user-submitted-image"><?php esc_html_e('Upload an Image', 'usp'); ?></label>-->
 			<div id="usp-upload-message"><?php echo $usp_options['upload-message']; ?></div>
 			<div id="user-submitted-image">
 			<?php // upload files
@@ -143,12 +145,14 @@ else :
 			if ($usp_minImages > 0) : ?>
 				<?php for ($i = 0; $i < $usp_minImages; $i++) : ?>
 						
-				<input name="user-submitted-image[]" type="file" size="25"<?php echo $usp_required; ?> class="usp-input usp-clone<?php echo $usp_files; ?> exclude">
+				<input name="user-submitted-image[]" type="file" size="25"	<?php echo $usp_required; ?> 
+					class="usp-input usp-clone		<?php echo $usp_files; ?> 	exclude custom-file-input"
+				>
 				<?php endfor; ?>
 				<?php if ($usp_minImages < $usp_maxImages) : echo $usp_addAnother; endif; ?>
 			<?php else : ?>
 				
-				<input name="user-submitted-image[]" type="file" size="25" class="usp-input usp-clone exclude">
+				<input name="user-submitted-image[]" type="file" size="25" class="usp-input usp-clone exclude custom-file-input">
 				<?php echo $usp_addAnother; ?>
 			<?php endif; ?>
 				
@@ -179,10 +183,11 @@ else :
 			<?php } ?>
 			<?php if ($usp_options['usp_use_cat'] == true) { ?>
 			
+			<!--<input type="hidden" class="usp-hidden exclude" name="user-submitted-category" value="<?php echo $usp_options['usp_use_cat_id']; ?>">-->
 			<input type="hidden" class="usp-hidden exclude" name="user-submitted-category" value="<?php echo $usp_options['usp_use_cat_id']; ?>">
 			<?php } ?>
 			
-			<input type="submit" class="exclude" id="user-submitted-post" name="user-submitted-post" value="<?php esc_attr_e('Submit Post', 'usp'); ?>">
+			<input type="submit" class="exclude" id="user-submitted-post" name="user-submitted-post" value="<?php esc_attr_e('Send', 'usp'); ?>">
 			<?php wp_nonce_field('usp-nonce', 'usp-nonce', false); ?>
 			
 		</div>
