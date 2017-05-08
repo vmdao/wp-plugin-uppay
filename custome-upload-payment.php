@@ -167,7 +167,7 @@ add_action('wp_ajax_nopriv_custom_upload', 'usp_checkForPublicSubmission');
 
 function usp_checkForPublicSubmission() {
 	global $usp_options;
-	
+	echo '123';
 	if (isset($_POST['user-submitted-post'], $_POST['usp-nonce']) && !empty($_POST['user-submitted-post']) && wp_verify_nonce($_POST['usp-nonce'], 'usp-nonce')) {
 		
 		$title = usp_get_default_title();
