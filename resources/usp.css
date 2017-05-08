@@ -89,10 +89,11 @@ div#user-submitted-posts select                   { box-sizing: border-box; disp
 
 div#user-submitted-posts div.usp_text-editor { margin: 20px 0 0 0;  }
 div#user-submitted-posts div.wp-editor-container { border: 1px solid #e5e5e5; }
-
+div#user-submitted-posts fieldset.usp-images{
+	margin: 0; 
+}
 div#user-submitted-posts fieldset.usp-images #user-submitted-image{
 	text-align: center;
-	margin: 0; 
 }
 
 div#user-submitted-posts fieldset input.usp-input.usp-clone { 

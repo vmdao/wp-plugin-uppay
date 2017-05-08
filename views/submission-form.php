@@ -185,6 +185,8 @@ else :
 			
 			<!--<input type="hidden" class="usp-hidden exclude" name="user-submitted-category" value="<?php echo $usp_options['usp_use_cat_id']; ?>">-->
 			<input type="hidden" class="usp-hidden exclude" name="user-submitted-category" value="<?php echo $usp_options['usp_use_cat_id']; ?>">
+			<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">
+			
 			<?php } ?>
 			
 			<input type="submit" class="exclude" id="user-submitted-post" name="user-submitted-post" value="<?php esc_attr_e('Send', 'usp'); ?>">
@@ -201,12 +203,15 @@ else :
 	jQuery('form#usp_form').submit(function(e){
 
         e.preventDefault();
-		var data = getDataForm();
-		data.action = 'custom_upload';
+		//var data = getDataForm();
+		console.log(new FormData(this))
 		jQuery.ajax({
 			type: 'POST',
 			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-			data : data,
+			data : new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+			contentType: false,       // The content type used when sending data to the server.
+			cache: false,             // To unable request pages to be cached
+			processData:false,  
 			success : function (resp){
 				try {
 					resp = JSON.parse(resp);
