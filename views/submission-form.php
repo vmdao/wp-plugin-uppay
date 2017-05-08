@@ -204,7 +204,7 @@ else :
 
         e.preventDefault();
 		//var data = getDataForm();
-		console.log(new FormData(this))
+		console.log(this, e.target, new FormData(this))
 		jQuery.ajax({
 			type: 'POST',
 			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
