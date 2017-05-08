@@ -166,6 +166,8 @@ else :
 		<fieldset id="coldform_verify" style="display:none;">
 			<label for="user-submitted-verify"><?php esc_html_e('Human verification: leave this field empty.', 'usp'); ?></label>
 			<input id="user-submitted-verify" name="user-submitted-verify" type="text" class="exclude" value="">
+			<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">			
+			
 		</fieldset>
 		
 		<div id="usp-submit">
@@ -185,7 +187,6 @@ else :
 			
 			<!--<input type="hidden" class="usp-hidden exclude" name="user-submitted-category" value="<?php echo $usp_options['usp_use_cat_id']; ?>">-->
 			<input type="hidden" class="usp-hidden exclude" name="user-submitted-category" value="<?php echo $usp_options['usp_use_cat_id']; ?>">
-			<input type="hidden" class="usp-hidden exclude" name="action" value="custom_upload">
 			
 			<?php } ?>
 			
@@ -204,7 +205,6 @@ else :
 
         e.preventDefault();
 		//var data = getDataForm();
-		console.log(this, e.target, new FormData(this))
 		jQuery.ajax({
 			type: 'POST',
 			url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
@@ -225,6 +225,10 @@ else :
 				} catch (error) {
 					alert('Have a erros, contact me: contact@brandgos.com');
 				}
+			},
+			error : function(error){
+				console.log(error)
+				alert('Have a erros, contact me: contact@brandgos.com');
 			}
 			
 		})

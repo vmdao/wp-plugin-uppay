@@ -5,8 +5,6 @@ jQuery(document).ready(function() {
         uid = jQuery(obj).data('stripeButtonUid');
         wp_asp_add_stripe_handler(window['stripehandler' + uid].data);
     });
-    console.log(jQuery('#stripe_form_0 button'));
-    jQuery('#stripe_form_0 button').css('display', 'none');
 });
 
 
